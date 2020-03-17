@@ -1,0 +1,52 @@
+<%= form_with(model: task, local: true) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :customer_id %>
+    <%= form.collection_select(:customer_id, Customer.customers_with_projects, :id, :name, { selected: @task.customer.id }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.collection_select(:project_id, @task.customer.projects, :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject_id %>
+    <%= form.collection_select(:subject_id, @task.project.subjects, :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :task_type_id %>
+    <%= form.collection_select(:task_type_id, TaskType.all, :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :task_date %>
+    <%= form.date_field :task_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, within: 1..24 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

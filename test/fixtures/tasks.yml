@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  subject: one
+  duration: 2020-03-14 22:54:06
+  description: MyString
+
+two:
+  project: two
+  subject: two
+  duration: 2020-03-14 22:54:06
+  description: MyString
