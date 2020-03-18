@@ -1,13 +1,12 @@
 class Task < ApplicationRecord
   belongs_to :project
   belongs_to :task_type
-  belongs_to :subject
+  belongs_to :subject, optional: true
+  belongs_to :user
   has_one :customer, through: :project
 
   default_scope { order(:task_date) }
-  
-  validates :project, presence: true
-  validates :task_type, presence: true  
+
   validates :task_date, presence: true 
   validates :duration, presence: true  
 

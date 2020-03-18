@@ -14,7 +14,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new(customer: Customer.customers_with_projects.first, task_date: DateTime.now, duration: 1)
+    customer = Customer.customers_with_projects.first
+    @task = Task.new(customer: customer, project: customer.projects.first, task_date: DateTime.now, duration: 1)
   end
 
   # GET /tasks/1/edit
@@ -25,7 +26,9 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.user = @current_user
+    @task.customer = Customer.find(params[:task][:customer_id])
+    
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -40,6 +43,8 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @task.user = @current_user
+
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }

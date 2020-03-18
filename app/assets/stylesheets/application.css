@@ -44,6 +44,7 @@
     padding:  0 25px;
     text-align: right;
     border-right: 2px solid #cfcfe3;
+    font-variant-caps: all-petite-caps;
  }
 
  .content{

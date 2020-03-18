@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  root 'tasks#index'
+
+  controller :sessions do
+    get     'login'   => :new
+    post    'login'   => :create
+    delete  'logout'  => :destroy
+  end
+
   resources :tasks
   resources :task_types
   resources :subjects
