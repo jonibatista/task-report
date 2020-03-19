@@ -8,6 +8,6 @@ class Task < ApplicationRecord
   default_scope { order(:task_date) }
 
   validates :task_date, presence: true 
-  validates :duration, presence: true  
+  validates :duration, presence: true
 
 end

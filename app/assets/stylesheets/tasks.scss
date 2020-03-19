@@ -1,3 +1,21 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+.tasks__table{
+  width: 100%;
+
+  tr:nth-child(even){
+    background-color: $color-background;
+  }
+
+  tr.section{
+    background-color: darken($color-background, 3%);
+    font-weight: bold;
+  }
+}
+
+.tasks__duration-input{
+  width: 40px;
+}

@@ -38,12 +38,12 @@
 
   <div class="field">
     <%= form.label :duration %>
-    <%= form.number_field :duration, within: 1..24 %>
+    <%= form.number_field :duration, within: 1..24, class: 'tasks__duration-input' %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, class: 'large-input' %>
   </div>
 
   <div class="actions">

@@ -1,0 +1,29 @@
+@import "variables";
+
+table{
+   margin-bottom: 1rem;
+   border-collapse: collapse;
+
+   th{
+      color: #fff;
+      background-color: $color-default;
+      padding: .5rem;
+      vertical-align: top;
+   }
+
+   td{
+      padding: .5rem;
+      vertical-align: top;
+      border-top: 1px solid $color-table-border;
+   }
+
+   th.col-actions, 
+   td.col-actions{
+      width:1%;
+      white-space:nowrap;
+   }
+
+   tr:nth-child(even){
+      background-color: darken($color-background, 3%);
+   }
+}
