@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Customer</th>
+      <th>Code</th>
       <th>Project</th>
       <th>Subject</th>
       <th class="cool-actions"></th>
@@ -16,6 +17,7 @@
     <% @subjects.each do |subject| %>
       <tr>
         <td><%= subject.customer.name %></td>
+        <td><%= subject.project.code %></td>
         <td><%= subject.project.name %></td>
         <td><%= subject.name %></td>
         <td class="cool-actions">

@@ -8,9 +8,10 @@
       <th>Date</th>
       <th>Duration</th>
       <th>Customer</th>
-      <th>Project</th>
       <th>Code</th>
+      <th>Project</th>
       <th>Subject</th>
+      <th>Task type</th>
       <th>Description</th>
       <th class="col-actions"></th>
     </tr>
@@ -21,15 +22,16 @@
       <tr class="section">
         <td rowspan="<%= tasks.count + 1 %>"><%= tasks.first.task_date %></td>
         <td><%= tasks.sum(&:duration) %></td>
-        <td colspan="6"></td>
+        <td colspan="7"></td>
       </tr>
       <% tasks.each do |task| %>
       <tr>
         <td><%= task.duration %></td>
         <td><%= task.customer.name %></td>
-        <td><%= task.project.name %></td>
         <td><%= task.project.code %></td>
+        <td><%= task.project.name %></td>
         <td><%= task&.subject&.name %></td>
+        <td><%= task.task_type.name %></td>
         <td><%= task.description %></td>
         <td class="col-actions">
           <%= link_to 'Show', task %>

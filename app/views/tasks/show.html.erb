@@ -1,14 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Project:</strong>
-  <%= @task.project.name %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @task&.subject&.name %>
-</p>
+<h1>View Task</h1>
 
 <p>
   <strong>Date:</strong>
@@ -18,6 +10,31 @@
 <p>
   <strong>Duration:</strong>
   <%= @task.duration %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @task.customer.name %>
+</p>
+
+<p>
+  <strong>Project's Code:</strong>
+  <%= @task.project.code %>
+</p>
+
+<p>
+  <strong>Project's Name:</strong>
+  <%= @task.project.name %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @task&.subject&.name %>
+</p>
+
+<p>
+  <strong>Task Type:</strong>
+  <%= @task.task_type.name %>
 </p>
 
 <p>
