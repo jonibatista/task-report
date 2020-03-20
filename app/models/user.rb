@@ -7,4 +7,11 @@ class User < ApplicationRecord
     validates :email, uniqueness: { case_sensitive: false }
     validates :name, presence: true, length: { maximum: 50 }
     validates :password, presence: true, length: { minimum: 8 }, unless: Proc.new { password.nil? }
+
+    before_save :clear_email
+
+    private
+      def clear_email
+        self.email = email.downcase
+      end
 end
