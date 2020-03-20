@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(user: @current_user).group_by(&:task_date)
+    @tasks = Task.where(user: @current_user)
   end
 
   # GET /tasks/1

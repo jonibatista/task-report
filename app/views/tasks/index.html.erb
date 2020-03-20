@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |date, tasks| %>
+    <% @tasks.group_by(&:task_date).each do |date, tasks| %>
       <tr class="section">
         <td rowspan="<%= tasks.count + 1 %>"><%= tasks.first.task_date %></td>
         <td><%= tasks.sum(&:duration) %></td>
