@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h1>Tasks 
+  <%= render_week_picker(@selected_week, @min_week) %>
+</h1>
 
 <table class="tasks__table">
   <thead>
@@ -21,12 +23,12 @@
     <% @tasks.group_by(&:task_date).each do |date, tasks| %>
       <tr class="section">
         <td rowspan="<%= tasks.count + 1 %>"><%= tasks.first.task_date %></td>
-        <td><%= tasks.sum(&:duration) %></td>
+        <td><%= tasks.sum(&:duration) %>h</td>
         <td colspan="7"></td>
       </tr>
       <% tasks.each do |task| %>
       <tr>
-        <td><%= task.duration %></td>
+        <td><%= task.duration %>h</td>
         <td><%= task.customer.name %></td>
         <td><%= task.project.code %></td>
         <td><%= task.project.name %></td>
@@ -38,9 +40,15 @@
           <%= link_to 'Edit', edit_task_path(task) %>
           <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
-    </tr>
+      </tr>
       <% end %>
     <% end %>
+
+    <tr class="section">
+      <td>Total</td>
+      <td><%= @tasks.sum(&:duration) %>h</td>
+      <td colspan="7"></td>
+    </tr>
   </tbody>
 </table>
 

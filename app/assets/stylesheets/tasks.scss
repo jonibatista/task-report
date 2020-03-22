@@ -3,6 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "variables";
 
+.tasks__week-pickers{
+  font-size: 13px;
+  font-weight: 600;
+  list-style: none;
+  float: right;
+  display: flex;
+}
+
+.tasks__week-picker{
+  margin-left: 10px;
+}
+
 .tasks__table{
   width: 100%;
 

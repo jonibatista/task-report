@@ -4,7 +4,20 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(user: @current_user)
+    begin
+      year = params[:year].to_i || Date.today.year
+      week = params[:week].to_i || Date.today.week
+      @selected_week = Date.commercial(year, week)
+    rescue
+      @selected_week = DateTime.now.beginning_of_week
+    end
+
+    @min_week = DateTime.new(2020, 1, 1)
+    if @selected_week.between?(@min_week, DateTime.now.end_of_week)
+      @tasks = Task.where(user: @current_user, task_date: @selected_week..@selected_week.end_of_week)
+    else
+      redirect_to tasks_url, notice: 'Invalid date week'
+    end
   end
 
   # GET /tasks/1
