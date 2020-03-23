@@ -7,11 +7,6 @@ class ApplicationController < ActionController::Base
       def authorize
         unless @current_user
           redirect_to login_url, notice: 'Please login first'
-          return
-        end
-
-        if @current_user.reporter? && manager_page?
-          redirect_to tasks_url, notice: "You don't have permissions to visit that page"
         end
       end
 
@@ -20,9 +15,5 @@ class ApplicationController < ActionController::Base
         @current_user = User.find(session[:user_id])
       rescue ActiveRecord::RecordNotFound
         @current_user = nil
-      end
-
-      def manager_page?
-        params[:controller] != "tasks" && params[:controller] != "sessions"
       end
 end
