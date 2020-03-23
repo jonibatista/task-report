@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     delete  'logout'  => :destroy
   end
 
-  get 'tasks/:year/:week',  to: 'tasks#index'
+  get 'tasks/week/:year/:week',  to: 'tasks#index', as: 'tasks_by_week'
   resources :tasks
-  
+
   resources :task_types
   resources :subjects
   resources :projects do

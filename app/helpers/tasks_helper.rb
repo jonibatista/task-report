@@ -6,15 +6,15 @@ module TasksHelper
     tag.ul class: 'tasks__week-pickers' do
       previous_week = date-1.week
       if previous_week > min
-        link = link_to '<< Previous', params.merge({ year: previous_week.year, week: previous_week.cweek})
+        link = link_to '<< Previous', tasks_by_week_path(params.merge({ year: previous_week.year, week: previous_week.cweek}))
         lis << tag.li(link, class: 'tasks__week-picker')
       end
 
-      lis << tag.li("Week #{@selected_week.strftime('%V %B, %Y')}", class: 'tasks__week-picker')
+      lis << tag.li("Week #{@selected_week.strftime('#%V: %B, %Y')}", class: 'tasks__week-picker')
 
       next_week = date+1.week
       if next_week < DateTime.now.end_of_week
-        link = link_to 'Next >>', params.merge({ year: next_week.year, week: next_week.cweek})
+        link = link_to 'Next >>', tasks_by_week_path(params.merge({ year: next_week.year, week: next_week.cweek}))
         lis << tag.li(link, class: 'tasks__week-picker')
       end
 

@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
         end
 
         if @current_user.reporter? && manager_page?
-          pp "BANG!!!"
           redirect_to tasks_url, notice: "You don't have permissions to visit that page"
         end
       end
