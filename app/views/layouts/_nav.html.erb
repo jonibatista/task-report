@@ -1,10 +1,14 @@
+<% if @current_user %>
 <nav class="main-nav">
     <ul class="main-nav__actions">
         <li class="main-nav__action"><%= link_to t(:task), tasks_path %></li>
-        <li class="main-nav__action"><%= link_to t(:project), projects_path %></li>
-        <li class="main-nav__action"><%= link_to t(:subject), subjects_path %></li>
-        <li class="main-nav__action"><%= link_to t(:customer), customers_path %></li>
-        <li class="main-nav__action"><%= link_to t(:task_type), task_types_path %></li>
+
+        <% if @current_user.manager? %>
+            <li class="main-nav__action"><%= link_to t(:project), projects_path %></li>
+            <li class="main-nav__action"><%= link_to t(:subject), subjects_path %></li>
+            <li class="main-nav__action"><%= link_to t(:customer), customers_path %></li>
+            <li class="main-nav__action"><%= link_to t(:task_type), task_types_path %></li>
+        <% end %>
         
         <% if @current_user.present? %>
             <li class="main-nav__action"><%= link_to t(:logout), logout_path, method: :delete %></li>
@@ -13,3 +17,4 @@
         <% end %>
     </ul>
 </nav>
+<% end %>

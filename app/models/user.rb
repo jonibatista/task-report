@@ -10,6 +10,11 @@ class User < ApplicationRecord
 
     before_save :clear_email
 
+
+    def reporter?
+      !manager?
+    end
+
     private
       def clear_email
         self.email = email.downcase
