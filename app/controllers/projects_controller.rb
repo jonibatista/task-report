@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.reorder('customers.name asc, projects.code asc')
   end
 
   # GET /projects/1
