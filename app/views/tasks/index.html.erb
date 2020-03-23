@@ -31,10 +31,10 @@
         <td><%= task.duration %>h</td>
         <td><%= task.customer.name %></td>
         <td><%= task.project.code %></td>
-        <td><%= task.project.name %></td>
-        <td><%= task&.subject&.name %></td>
-        <td><%= task.task_type.name %></td>
-        <td><%= task.description %></td>
+        <td title="<%= task.project.name %>"><%= task.project.name %></td>
+        <td title="<%= task&.subject&.name %>"><%= task&.subject&.name %></td>
+        <td title="<%= task.task_type.name %>"><%= task.task_type.name %></td>
+        <td title="<%= task.description %>"><%= truncate(task.description) %></td>
         <td class="col-actions">
           <%= link_to 'Show', task %>
           <%= link_to 'Edit', edit_task_path(task) %>
