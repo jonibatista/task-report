@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_001449) do
+ActiveRecord::Schema.define(version: 2020_03_23_103543) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_03_18_001449) do
     t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["code"], name: "index_projects_on_code", unique: true
     t.index ["customer_id"], name: "index_projects_on_customer_id"
   end
 
@@ -64,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_001449) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "manager", default: false
   end
 
   add_foreign_key "projects", "customers"
