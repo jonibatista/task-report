@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A tool that helps workers to report what they have been working on to their manager.
 
-Things you may want to cover:
+Managers can create projects that belong to customers and can have subjects. Managers are also responsible to define task types that define the activity type. Then, each worker can easily report how long he spent on a task. 
 
-* Ruby version
+## What's next
 
-* System dependencies
+* Allow users to change their passwords
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Send weekly report by answer two or three questions
