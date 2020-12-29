@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create({email: 'joni.batista@tecmic.pt', password: 'Tecmic.12345', name: 'Jóni Batista', manager: true})
+
 Customer.create([{name: 'TECMIC'}, {name: 'CARRIS'}, {name: 'CARRISTUR'}, {name: 'RODOTEJO'}])
 
 TaskType.create([{name: 'Análise e levantamento de requisitos'}, {name: 'Especificação de requisitos'}, 

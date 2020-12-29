@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_03_23_103543) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_103543) do
   create_table "projects", force: :cascade do |t|
     t.string "code"
     t.string "name", null: false
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_projects_on_customer_id"
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_103543) do
 
   create_table "subjects", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "project_id"
+    t.bigint "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_subjects_on_project_id"
@@ -42,15 +45,15 @@ ActiveRecord::Schema.define(version: 2020_03_23_103543) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "subject_id"
-    t.integer "task_type_id", null: false
+    t.bigint "project_id", null: false
+    t.bigint "subject_id"
+    t.bigint "task_type_id", null: false
     t.date "task_date", null: false
     t.integer "duration", null: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["subject_id"], name: "index_tasks_on_subject_id"
     t.index ["task_type_id"], name: "index_tasks_on_task_type_id"
