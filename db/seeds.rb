@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create({email: 'joni.batista@tecmic.pt', password: 'Tecmic.12345', name: 'Jóni Batista', manager: true})
+User.create({email: 'john.doe@tecmic.pt', password: 'Tecmic.12345', name: 'John Doe', manager: false})
 
 Customer.create([{name: 'TECMIC'}, {name: 'CARRIS'}, {name: 'CARRISTUR'}, {name: 'RODOTEJO'}])
 

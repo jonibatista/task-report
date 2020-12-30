@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -8,13 +8,14 @@ class TasksController < ApplicationController
       year = params[:year].to_i || Date.today.year
       week = params[:week].to_i || Date.today.week
       @selected_week = Date.commercial(year, week)
-    rescue
+    rescue StandardError
       @selected_week = DateTime.now.beginning_of_week
     end
 
+    authorize Task
     @min_week = DateTime.new(2020, 1, 1)
     if @selected_week.between?(@min_week, DateTime.now.end_of_week)
-      @tasks = Task.where(user: @current_user, task_date: @selected_week..@selected_week.end_of_week)
+      @tasks = policy_scope(Task).where(task_date: @selected_week..@selected_week.end_of_week)
     else
       redirect_to tasks_url, notice: 'Invalid date week'
     end
@@ -22,18 +23,17 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   # GET /tasks/1.json
-  def show
-  end
+  def show; end
 
   # GET /tasks/new
   def new
     customer = Customer.customers_with_projects.first
     @task = Task.new(customer: customer, project: customer.projects.first, task_date: DateTime.now, duration: 1)
+    authorize @task
   end
 
   # GET /tasks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tasks
   # POST /tasks.json
@@ -41,7 +41,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user = @current_user
     @task.customer = Customer.find(params[:task][:customer_id])
-    
+    authorize @task
+
     respond_to do |format|
       if @task.save
         format.html { redirect_to tasks_by_week_path(@task.task_date.year, @task.task_date.cweek), notice: 'Task was successfully created.' }
@@ -80,13 +81,15 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:project_id, :subject_id, :task_type_id, :task_date, :duration, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = policy_scope(Task).find(params[:id])
+    authorize @task
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:project_id, :subject_id, :task_type_id, :task_date, :duration, :description)
+  end
 end

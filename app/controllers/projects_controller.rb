@@ -1,30 +1,31 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :subjects]
+  before_action :set_project, only: %i[show edit update destroy subjects]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all.reorder('customers.name asc, projects.code asc')
+    @projects = policy_scope(Project)
+    authorize @projects
   end
 
   # GET /projects/1
   # GET /projects/1.json
-  def show
-  end
+  def show; end
 
   # GET /projects/new
   def new
     @project = Project.new
+    authorize @project
   end
 
   # GET /projects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    authorize @project
 
     respond_to do |format|
       if @project.save
@@ -67,13 +68,15 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id] || params[:project_id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def project_params
-      params.require(:project).permit(:code, :name, :customer_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = policy_scope(Project).find(params[:id] || params[:project_id])
+    authorize @project
+  end
+
+  # Only allow a list of trusted parameters through.
+  def project_params
+    params.require(:project).permit(:code, :name, :customer_id)
+  end
 end

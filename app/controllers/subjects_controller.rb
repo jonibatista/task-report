@@ -1,30 +1,31 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_subject, only: %i[show edit update destroy]
 
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = policy_scope(Subject)
+    authorize @subjects
   end
 
   # GET /subjects/1
   # GET /subjects/1.json
-  def show
-  end
+  def show; end
 
   # GET /subjects/new
   def new
     @subject = Subject.new(customer: Customer.customers_with_projects.first)
+    authorize @subject
   end
 
   # GET /subjects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /subjects
   # POST /subjects.json
   def create
     @subject = Subject.new(subject_params)
+    authorize @subject
 
     respond_to do |format|
       if @subject.save
@@ -62,13 +63,15 @@ class SubjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subject
-      @subject = Subject.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def subject_params
-      params.require(:subject).permit(:name, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_subject
+    @subject = policy_scope(Subject).find(params[:id])
+    authorize @subject
+  end
+
+  # Only allow a list of trusted parameters through.
+  def subject_params
+    params.require(:subject).permit(:name, :project_id)
+  end
 end
