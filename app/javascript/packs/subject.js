@@ -23,11 +23,19 @@ $(document).on('turbolinks:load', () => {
 
     const $task_project = $("#task_project_id");
     $task_project.on("change", () => {
+        $(".task-project-dropdown__description").addClass("hidden");
+        $(`#task_project_dropdown_${$task_project.val()}`).removeClass("hidden");
         const project_id = $task_project.val();
         const $elem_to_replace = $("#task_subject_id");
         $.ajax(`../../projects/${project_id}/subjects`)
             .done( (dom) => {
                 $elem_to_replace.html(dom);
             });
+    });
+
+    const $task_type = $("#task_task_type_id");
+    $task_type.on("change", () => {
+        $(".task-task-type-dropdown__description").addClass("hidden");
+        $(`#task_task_type_dropdown_${$task_type.val()}`).removeClass("hidden");
     });
 });

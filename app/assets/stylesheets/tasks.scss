@@ -31,3 +31,17 @@
 .tasks__duration-input{
   width: 40px;
 }
+
+.task-project-dropdown,
+.task-task-type-dropdown{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-project-dropdown__description,
+.task-task-type-dropdown__description{
+  font-variant-caps: all-petite-caps;
+  font-size: 1.1em;
+  font-style: italic;
+}

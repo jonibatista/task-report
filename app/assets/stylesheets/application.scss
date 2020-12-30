@@ -65,10 +65,14 @@ a {
  }
 
  .content{
-     padding: 25px;
+    padding: 25px;
  }
 
  .main-nav__action{
-     font-size: 20px;
-     line-height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+ }
+
+ .hidden{
+   display: none;
  }
