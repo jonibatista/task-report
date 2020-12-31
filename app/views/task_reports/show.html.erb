@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @task_report.title %> Task Report</h1>
+
+  
+<p>O que acrescentei eu de valor ao produto(s)/equipa face à semana anterior?</p>
+<p><%= @task_report.summary %></p>
+
+<p>O que prevejo fazer na próxima semana?</p>
+<p><%= @task_report.upcoming %></p>
+
+<p>Que dependências/bloqueios me impediram/impedem de realizar as minhas tarefas?</p>
+<p><%= @task_report.obstacles %></p>
+
+<p>Tenho a registar algum atraso face ao planeado?</p>
+<p><%= @task_report.delays %></p>
+
+<%= link_to 'Edit', edit_task_report_path(@task_report) %> |
+<%= link_to 'Back', task_reports_path %>

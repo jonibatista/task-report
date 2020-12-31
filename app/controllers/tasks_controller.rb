@@ -57,8 +57,6 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    @task.user = @current_user
-
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to tasks_by_week_path(@task.task_date.year, @task.task_date.cweek), notice: 'Task was successfully updated.' }

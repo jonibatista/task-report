@@ -2,6 +2,7 @@
 <nav class="main-nav">
     <ul class="main-nav__actions">
         <li class="main-nav__action"><%= link_to t(:task), tasks_path %></li>
+        <li class="main-nav__action"><%= link_to t(:task_report), task_reports_path %></li>
 
         <% if @current_user.manager? %>
             <li class="main-nav__action"><%= link_to t(:project), projects_path %></li>

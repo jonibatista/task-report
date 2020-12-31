@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_150554) do
+ActiveRecord::Schema.define(version: 2020_12_30_223645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(version: 2020_12_30_150554) do
     t.index ["project_id"], name: "index_subjects_on_project_id"
   end
 
+  create_table "task_reports", force: :cascade do |t|
+    t.date "from", null: false
+    t.date "to", null: false
+    t.integer "status", default: 0
+    t.string "summary", null: false
+    t.string "upcoming", null: false
+    t.string "obstacles", null: false
+    t.string "delays", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_task_reports_on_user_id"
+  end
+
   create_table "task_types", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -57,8 +71,10 @@ ActiveRecord::Schema.define(version: 2020_12_30_150554) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.bigint "task_report_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["subject_id"], name: "index_tasks_on_subject_id"
+    t.index ["task_report_id"], name: "index_tasks_on_task_report_id"
     t.index ["task_type_id"], name: "index_tasks_on_task_type_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -74,7 +90,9 @@ ActiveRecord::Schema.define(version: 2020_12_30_150554) do
 
   add_foreign_key "projects", "customers"
   add_foreign_key "subjects", "projects"
+  add_foreign_key "task_reports", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "subjects"
+  add_foreign_key "tasks", "task_reports"
   add_foreign_key "tasks", "task_types"
 end

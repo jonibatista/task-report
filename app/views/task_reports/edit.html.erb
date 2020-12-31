@@ -1,0 +1,6 @@
+<h1><%= @task_report.title %> Task Report</h1>
+
+<%= render 'form', task_report: @task_report %>
+
+<%= link_to 'Show', @task_report %> |
+<%= link_to 'Back', tasks_by_week_path(@task_report.from.year, @task_report.from.cweek) %>
