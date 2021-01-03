@@ -1,8 +1,8 @@
 class TaskReportsController < ApplicationController
-  before_action :set_task_report, only: %i[show edit update destroy]
+  before_action :set_task_report, only: %i[show edit update destroy submit approve reject]
 
   def index
-    @task_reports = policy_scope(TaskReport)
+    @task_reports = policy_scope(TaskReport).where(user: @current_user)
     authorize @task_reports
   end
 
@@ -20,7 +20,7 @@ class TaskReportsController < ApplicationController
     authorize @task_report
 
     if @task_report.save
-      redirect_to task_reports_path, notice: 'Task report was successfully submitted.'
+      redirect_to task_report_path(@task_report), notice: 'Task report was successfully submitted.'
     else
       render :new
     end
@@ -39,6 +39,25 @@ class TaskReportsController < ApplicationController
   def destroy
     @task_report.destroy
     redirect_to task_reports_path, notice: 'Task was successfully destroyed.'
+  end
+
+  def approvals
+    authorize TaskReport
+  end
+
+  def submit
+    @task_report.update(status: TaskReport.statuses[:submitted])
+    redirect_to task_report_path(@task_report), notice: "Task report was successfully submitted. Please wait for its approval"
+  end
+
+  def approve
+    @task_report.update(status: TaskReport.statuses[:approved])
+    redirect_to task_reports_approvals_path, notice: "Task report was successfully approved."
+  end
+
+  def reject
+    @task_report.update(status: TaskReport.statuses[:rejected])
+    redirect_to task_reports_approvals_path, notice: "Task report was successfully rejected."
   end
 
   private

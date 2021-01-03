@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reports to review</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>From</th>
+      <th>To</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% TaskReport.submitted.each do |task_report| %>
+      <tr>
+        <td><%= task_report.title %></td>
+        <td><%= task_report.from %></td>
+        <td><%= task_report.to %></td>
+        <td><%= link_to 'Show', task_report %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Reports approved</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>From</th>
+      <th>To</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% TaskReport.approved.each do |task_report| %>
+      <tr>
+        <td><%= task_report.title %></td>
+        <td><%= task_report.from %></td>
+        <td><%= task_report.to %></td>
+        <td><%= link_to 'Show', task_report %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Reports rejected</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>From</th>
+      <th>To</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% TaskReport.rejected.each do |task_report| %>
+      <tr>
+        <td><%= task_report.title %></td>
+        <td><%= task_report.from %></td>
+        <td><%= task_report.to %></td>
+        <td><%= link_to 'Show', task_report %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -9,7 +9,7 @@
       <th>From</th>
       <th>To</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -21,8 +21,6 @@
         <td><%= task_report.to %></td>
         <td><%= task_report.status %></td>
         <td><%= link_to 'Show', task_report %></td>
-        <td><%= link_to 'Edit', edit_task_report_path(task_report) %></td>
-        <td><%= link_to 'Destroy', task_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

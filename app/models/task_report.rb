@@ -1,8 +1,10 @@
 class TaskReport < ApplicationRecord
-  enum status: [ :created, :submitted, :rejected, :resubmitted, :approved ]
+  enum status: [ :created, :submitted, :rejected, :approved ]
 
   belongs_to :user
   has_many :tasks
+  
+  default_scope { order(from: :desc) }
   
   validates :from, presence: true
   validates :to, presence: true

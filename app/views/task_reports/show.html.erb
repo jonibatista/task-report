@@ -15,5 +15,25 @@
 <p>Tenho a registar algum atraso face ao planeado?</p>
 <p><%= @task_report.delays %></p>
 
-<%= link_to 'Edit', edit_task_report_path(@task_report) %> |
-<%= link_to 'Back', task_reports_path %>
+<% if policy(@task_report).edit? %>
+    <%= link_to 'Edit', edit_task_report_path(@task_report) %> |
+<% end %>
+
+<% if policy(@task_report).destroy? %>
+    <%= link_to 'Destroy', @task_report, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
+
+<% if policy(@task_report).submit? %>
+    <%= link_to 'Submit', submit_task_report_path(@task_report), method: :patch %> |
+<% end %>
+
+<% if policy(@task_report).approve? %>
+    <%= link_to 'Approve', approve_task_report_path(@task_report), method: :patch %> |
+    <%= link_to 'Reject', reject_task_report_path(@task_report), method: :patch %> |
+<% end %>
+
+<% if @task_report.user == @current_user %>
+    <%= link_to 'Back', task_reports_path %>
+<% else %>
+    <%= link_to 'Back', task_reports_approvals_path %>
+<% end %>
