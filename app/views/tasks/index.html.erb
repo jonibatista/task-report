@@ -12,7 +12,6 @@
       <th>Customer</th>
       <th>Code</th>
       <th>Project</th>
-      <th>Subject</th>
       <th>Task type</th>
       <th>Description</th>
       <th class="col-actions"></th>
@@ -32,7 +31,6 @@
         <td><%= task.customer.name %></td>
         <td><%= task.project.code %></td>
         <td title="<%= task.project.name %>"><%= task.project.name %></td>
-        <td title="<%= task&.subject&.name %>"><%= task&.subject&.name %></td>
         <td title="<%= task.task_type.name %>"><%= task.task_type.name %></td>
         <td title="<%= task.description %>"><%= truncate(task.description) %></td>
         <td class="col-actions">
@@ -52,7 +50,16 @@
   </tbody>
 </table>
 
-<br>
+<div class="page-actions">
+  <% if @tasks.empty? || policy(@tasks.first).new? %>
+    <%= link_to 'New Task', new_task_path %>
+  <% end %>
 
-<%= link_to 'New Task', new_task_path %> |
-<%= link_to 'New Task Report', new_task_reports_by_week_path(@selected_week) %>
+  <% task_report = @current_user.task_reports.where('task_reports.from <= ? AND task_reports.to >= ?', @selected_week, @selected_week).first %>
+  <% if task_report&.persisted? && policy(task_report).edit? %>  
+    | <%= link_to 'Edit Task Report', edit_task_report_path(task_report) %>
+  <% else %>
+    | <%= link_to 'New Task Report', new_task_reports_by_week_path(@selected_week) %>
+  <% end %>
+
+</div>

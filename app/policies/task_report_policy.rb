@@ -13,11 +13,11 @@ class TaskReportPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user && (record.created? || record.rejected?)
+    record.user == user && record.open?
   end
 
   def destroy?
-    record.user == user && !record.approved?
+    record.user == user && record.open?
   end
 
   def approvals?

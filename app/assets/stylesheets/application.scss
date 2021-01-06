@@ -49,7 +49,6 @@ a {
  }
 
  .large-input{
-   max-width: 600px;
    width: 100%
  }
 
@@ -75,4 +74,10 @@ a {
 
  .hidden{
    display: none;
+ }
+
+ .page-actions{
+   margin-top: 40px;
+   padding-top: 10px;
+   border-top: 2px solid $color-table-border;
  }

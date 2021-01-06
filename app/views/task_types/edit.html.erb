@@ -2,5 +2,7 @@
 
 <%= render 'form', task_type: @task_type %>
 
-<%= link_to 'Show', @task_type %> |
-<%= link_to 'Back', task_types_path %>
+<div class="page-actions">
+    <%= link_to 'Show', @task_type %> |
+    <%= link_to 'Back', task_types_path %>
+</div>

@@ -2,5 +2,7 @@
 
 <%= render 'form', task: @task %>
 
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_by_week_path(@task.task_date.year, @task.task_date.cweek) %>
+<div class="page-actions">
+    <%= link_to 'Show', @task %> |
+    <%= link_to 'Back', tasks_by_week_path(@task.task_date.year, @task.task_date.cweek) %>
+</div>

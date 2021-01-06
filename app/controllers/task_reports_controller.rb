@@ -10,7 +10,7 @@ class TaskReportsController < ApplicationController
 
   def new
     date = (params[:date] && Date.parse(params[:date])) || DateTime.now.beginning_of_week
-    @task_report = TaskReport.new(from: date.beginning_of_week, to: date.end_of_week)
+    @task_report = TaskReport.new(user: @current_user, from: date.beginning_of_week, to: date.end_of_week)
     authorize @task_report
   end
 

@@ -9,23 +9,23 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.task_report.nil? || record.task_report.open?
   end
 
   def new?
-    true
+    create?
   end
 
   def update?
-    true
+    create?
   end
 
   def edit?
-    true
+    update?
   end
 
   def destroy?
-    true
+    create?
   end
 
   class Scope < Scope

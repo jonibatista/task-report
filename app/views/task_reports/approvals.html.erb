@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Week</th>
+      <th>By</th>
       <th>From</th>
       <th>To</th>
       <th></th>
@@ -16,6 +17,7 @@
     <% TaskReport.submitted.each do |task_report| %>
       <tr>
         <td><%= task_report.title %></td>
+        <td><%= task_report.user.name %></td>
         <td><%= task_report.from %></td>
         <td><%= task_report.to %></td>
         <td><%= link_to 'Show', task_report %></td>
@@ -30,6 +32,7 @@
   <thead>
     <tr>
       <th>Week</th>
+      <th>By</th>
       <th>From</th>
       <th>To</th>
       <th></th>
@@ -40,6 +43,7 @@
     <% TaskReport.approved.each do |task_report| %>
       <tr>
         <td><%= task_report.title %></td>
+        <td><%= task_report.user.name %></td>
         <td><%= task_report.from %></td>
         <td><%= task_report.to %></td>
         <td><%= link_to 'Show', task_report %></td>
@@ -54,6 +58,7 @@
   <thead>
     <tr>
       <th>Week</th>
+      <th>By</th>
       <th>From</th>
       <th>To</th>
       <th></th>
@@ -64,6 +69,7 @@
     <% TaskReport.rejected.each do |task_report| %>
       <tr>
         <td><%= task_report.title %></td>
+        <td><%= task_report.user.name %></td>
         <td><%= task_report.from %></td>
         <td><%= task_report.to %></td>
         <td><%= link_to 'Show', task_report %></td>
