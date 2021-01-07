@@ -47,16 +47,19 @@ class TaskReportsController < ApplicationController
 
   def submit
     @task_report.update(status: TaskReport.statuses[:submitted])
+    TaskReportMailer.submitted(@task_report).deliver_later
     redirect_to task_report_path(@task_report), notice: "Task report was successfully submitted. Please wait for its approval"
   end
 
   def approve
     @task_report.update(status: TaskReport.statuses[:approved])
+    TaskReportMailer.approved(@task_report).deliver_later
     redirect_to task_reports_approvals_path, notice: "Task report was successfully approved."
   end
 
   def reject
     @task_report.update(status: TaskReport.statuses[:rejected])
+    TaskReportMailer.rejected(@task_report).deliver_later
     redirect_to task_reports_approvals_path, notice: "Task report was successfully rejected."
   end
 

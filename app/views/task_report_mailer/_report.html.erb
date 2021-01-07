@@ -1,0 +1,27 @@
+<div class="report-question">  
+    <h2>O que acrescentei eu de valor ao produto(s)/equipa face à semana anterior?</h2>
+    <p><%= task_report.summary %></p>
+</div>  
+
+<div class="report-question">  
+    <h2>O que prevejo fazer na próxima semana?</h2>
+    <p><%= task_report.upcoming %></p>
+</div>  
+
+<% unless task_report.obstacles.empty? %>
+<div class="report-question">  
+    <h2>Que dependências/bloqueios me impediram/impedem de realizar as minhas tarefas?</h2>
+    <p><%= task_report.obstacles %></p>
+</div>  
+<% end %>
+
+<% unless task_report.obstacles.empty? %>
+<div class="report-question">  
+    <h2>Tenho a registar algum atraso face ao planeado?</h2>
+    <p><%= task_report.delays %></p>
+</div>  
+<% end %>
+
+<%= render './task_reports/tasks_summary', tasks: task_report.tasks %>
+
+<%= link_to 'Review', task_report_url(task_report), target: :blank %>
