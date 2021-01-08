@@ -68,8 +68,8 @@ Rails.application.configure do
     address:              'mail.tecmic.pt',
     port:                 587,
     domain:               'tecmic.pt',
-    user_name:            Rails.application.credentials.[:mail][:username],
-    password:             Rails.application.credentials.[:mail][:password],
+    user_name:            Rails.application.credentials[:mail][:username],
+    password:             Rails.application.credentials[:mail][:password],
     authentication:       'plain',
     enable_starttls_auto: true }
 
