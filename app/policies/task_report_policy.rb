@@ -5,7 +5,7 @@ class TaskReportPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    record.user == user || record.approved?
   end
 
   def create?

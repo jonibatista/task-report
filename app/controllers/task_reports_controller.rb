@@ -1,12 +1,15 @@
 class TaskReportsController < ApplicationController
-  before_action :set_task_report, only: %i[show edit update destroy submit approve reject]
+  before_action :set_task_report, only: %i[edit update destroy submit approve reject]
 
   def index
-    @task_reports = policy_scope(TaskReport).where(user: @current_user)
+    @task_reports = policy_scope(TaskReport)
     authorize @task_reports
   end
 
-  def show; end
+  def show
+    @task_report = TaskReport.find(params[:id])
+    authorize @task_report
+  end
 
   def new
     date = (params[:date] && Date.parse(params[:date])) || DateTime.now.beginning_of_week
