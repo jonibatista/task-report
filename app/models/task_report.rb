@@ -14,7 +14,8 @@ class TaskReport < ApplicationRecord
   validates :upcoming, presence: true
   validates :user, presence: true
 
-  before_save :bind_tasks
+  before_validation :bind_tasks
+  before_destroy :unbind_tasks
 
   def initialize(attributes={})
     super 
@@ -34,5 +35,9 @@ class TaskReport < ApplicationRecord
   
   def bind_tasks
     self.tasks = user.tasks.where(task_date: from..to) if user.present?
+  end
+  
+  def unbind_tasks
+    Task.where(id: user.tasks).update_all(task_report_id: nil)
   end
 end

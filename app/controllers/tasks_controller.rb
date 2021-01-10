@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    customer = Customer.customers_with_projects.first
+    customer = Customer.customers_with_projects&.first
     @task = Task.new(user: @current_user, customer: customer, project: customer.projects.first, task_date: DateTime.now, duration: 1)
     authorize @task
   end
