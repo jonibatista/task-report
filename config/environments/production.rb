@@ -70,7 +70,7 @@ Rails.application.configure do
     domain:               'tecmic.pt',
     user_name:            Rails.application.credentials[:mail][:username],
     password:             Rails.application.credentials[:mail][:password],
-    authentication:       'plain',
+    authentication:       'login',
     enable_starttls_auto: true }
 
   # Ignore bad email addresses and do not raise email delivery errors.
