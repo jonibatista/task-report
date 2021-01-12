@@ -8,6 +8,11 @@ class TaskReport < ApplicationRecord
   scope :to_deliver, -> { where(status: [:created, :rejected]) }
   scope :provided, -> { where(status: [:submitted, :approved]) }
 
+  has_rich_text :summary
+  has_rich_text :upcoming
+  has_rich_text :obstacles
+  has_rich_text :delays
+
   validates :from, presence: true
   validates :to, presence: true
   validates :summary, presence: true

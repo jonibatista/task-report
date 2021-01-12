@@ -18,22 +18,22 @@
   
   <div class="field">
     <h2><%= form.label "O que acrescentei eu de valor ao produto(s)/equipa face à semana anterior?" %></h2>
-    <%= form.text_area :summary, rows: 8, class: 'large-input' %>
+    <%= form.rich_text_area :summary, rows: 8, class: 'large-input' %>
   </div>
 
   <div class="field">
     <h2><%= form.label "O que prevejo fazer na próxima semana?" %></h2>
-    <%= form.text_area :upcoming, rows: 8, class: 'large-input' %>
+    <%= form.rich_text_area :upcoming, rows: 8, class: 'large-input' %>
   </div>
 
   <div class="field">
     <h2><%= form.label "Que dependências/bloqueios me impediram/impedem de realizar as minhas tarefas?" %></h2>
-    <%= form.text_area :obstacles, rows: 4, class: 'large-input' %>
+    <%= form.rich_text_area :obstacles, rows: 4, class: 'large-input' %>
   </div>
 
   <div class="field">
    <h2> <%= form.label "Tenho a registar algum atraso face ao planeado?" %></h2>
-    <%= form.text_area :delays, rows: 4, class: 'large-input' %>
+    <%= form.rich_text_area :delays, rows: 4, class: 'large-input' %>
   </div>
 
   <div class="actions">
