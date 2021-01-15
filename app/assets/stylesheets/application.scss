@@ -81,3 +81,13 @@ a {
    padding-top: 10px;
    border-top: 2px solid $color-table-border;
  }
+
+ // TODO extract trix custom styles into to a new file
+.trix-content{
+  background-color:#f0f0f0;
+}
+
+trix-toolbar .trix-button{
+}
+trix-toolbar .trix-button.trix-active{
+}
