@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'task-reports@tecmic.pt'
+  default from: 'Task.Report@tecmic.pt'
   layout 'mailer'
 end
