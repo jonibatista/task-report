@@ -1,37 +1,33 @@
 <table class="tasks__table">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Duration</th>
-      <th>Customer</th>
       <th>Project</th>
       <th>Task type</th>
       <th>Description</th>
+      <th>Duration</th>
     </tr>
   </thead>
 
   <tbody>
-    <% tasks.group_by(&:task_date).each do |date, tasks| %>
+    <% tasks.group_by(&:project).each do |project, tasks| %>
       <tr class="section">
-        <td rowspan="<%= tasks.count + 1 %>"><%= tasks.first.task_date %></td>
+        <td rowspan="<%= tasks.count + 1 %>"><%= "#{project.customer.name}: #{project.name}" %></td>
+        <td colspan="2"></td>
         <td><%= tasks.sum(&:duration) %>h</td>
-        <td colspan="7"></td>
       </tr>
       <% tasks.each do |task| %>
       <tr>
-        <td><%= task.duration %>h</td>
-        <td><%= task.customer.name %></td>
-        <td title="<%= task.project.name %>"><%= task.project.name %></td>
         <td title="<%= task.task_type.name %>"><%= task.task_type.name %></td>
         <td title="<%= task.description %>"><%= truncate(task.description) %></td>
+        <td><%= task.duration %>h</td>
       </tr>
       <% end %>
     <% end %>
 
     <tr class="section">
       <td>Total</td>
+      <td colspan="2"></td>
       <td><%= tasks.sum(&:duration) %>h</td>
-      <td colspan="7"></td>
     </tr>
   </tbody>
 </table>
