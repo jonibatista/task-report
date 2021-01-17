@@ -1,11 +1,20 @@
-# README
+# Task report
+A tool that helps co-workers to share what they have been working on.
 
-A tool that helps workers to report what they have been working on to their manager.
+## How it works?
+Each person should report their work daily under tasks. A task belongs to a customer and project. 
+At the end of the week, each person submits their report by awnsering a few questions to sum up the collection of reported tasks.
+Then, their manager begins the approval process. Finnaly, after has been approval being, it's shared across the team to let them know what is going on.
 
-Managers can create projects that belong to customers and can have subjects. Managers are also responsible to define task types that define the activity type. Then, each worker can easily report how long he spent on a task. 
+## Getting Started
+// TODO
 
 ## What's next
-
 * Allow users to change their passwords
+* Adds comments to the review process
 
-* Send weekly report by answer two or three questions
+## Contributing
+// TODO
+
+## License
+// TODO
