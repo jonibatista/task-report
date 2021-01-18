@@ -1,3 +1,5 @@
+<%= render './task_reports/tasks_summary', tasks: task_report.tasks if display_tasks %>
+
 <div class="report-question">  
     <h2>O que acrescentei eu de valor ao produto(s)/equipa face à semana anterior?</h2>
     <p><%= task_report.summary %></p>
@@ -21,7 +23,5 @@
     <p><%= task_report.delays %></p>
 </div>  
 <% end %>
-
-<%= render './task_reports/tasks_summary', tasks: task_report.tasks %>
 
 <%= link_to 'Review', task_report_url(task_report), target: :blank %>

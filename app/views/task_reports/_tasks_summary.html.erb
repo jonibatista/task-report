@@ -11,14 +11,14 @@
   <tbody>
     <% tasks.group_by(&:project).each do |project, tasks| %>
       <tr class="section">
-        <td rowspan="<%= tasks.count + 1 %>"><%= "#{project.customer.name}: #{project.name}" %></td>
+        <td rowspan="<%= tasks.count + 1 %>"><span class="block"><%= project.customer.name %></span> <span class="block"><%= project.name %><span></td>
         <td colspan="2"></td>
         <td><%= tasks.sum(&:duration) %>h</td>
       </tr>
       <% tasks.each do |task| %>
       <tr>
         <td title="<%= task.task_type.name %>"><%= task.task_type.name %></td>
-        <td title="<%= task.description %>"><%= truncate(task.description) %></td>
+        <td title="<%= task.description %>"><%= task.description %></td>
         <td><%= task.duration %>h</td>
       </tr>
       <% end %>
