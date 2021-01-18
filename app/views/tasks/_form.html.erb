@@ -16,7 +16,7 @@
     <%= form.collection_select(:customer_id, Customer.customers_with_projects, :id, :name, {selected: task.customer.id} ) %>
   </div>
 
-  <div class="field">
+  <div id="customer-projects" class="field">
     <%= form.label :project_id %>
     <%= form.collection_select(:project_id, @task&.customer&.projects || [], :id, :name) %>
     

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: %i[show edit update destroy subjects]
+  before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects
   # GET /projects.json
@@ -60,11 +60,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def subjects
-    @subjects = @project.subjects
-    render 'subjects', layout: false
   end
 
   private

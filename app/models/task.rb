@@ -1,7 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :project
   belongs_to :task_type
-  belongs_to :subject, optional: true
   belongs_to :user
   belongs_to :task_report, optional: true
   has_one :customer, through: :project

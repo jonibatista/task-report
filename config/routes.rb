@@ -11,10 +11,7 @@ Rails.application.routes.draw do
   resources :tasks
 
   resources :task_types
-  resources :subjects
-  resources :projects do
-    get 'subjects' => 'projects#subjects'
-  end
+  resources :projects 
   resources :customers do
     get 'projects' => 'customers#projects'
   end
