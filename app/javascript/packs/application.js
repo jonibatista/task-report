@@ -9,9 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-require("packs/subject")
-
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -21,3 +18,40 @@ require("packs/subject")
 
 require("trix")
 require("@rails/actiontext")
+
+function on_customer_change($elem_to_replace, customer_id){
+    $.ajax(`../../customers/${customer_id}/projects`)
+        .done( (dom) => {
+            $elem_to_replace.html(dom);
+            $elem_to_replace.trigger("change");
+
+            bind_project_selection();
+        });
+}
+
+function bind_project_selection(){
+    const $task_project = $("#task_project_id");
+    $task_project.on("change", () => {
+        $(".task-project-dropdown__description").addClass("hidden");
+        $(`#task_project_dropdown_${$task_project.val()}`).removeClass("hidden");
+        const project_id = $task_project.val();
+    });
+}
+
+$(document).on('turbolinks:load', () => {
+
+    const $task_customer = $("#task_customer_id");
+    $task_customer.on("change", () => {
+        const customer_id = $task_customer.val();
+        const $elem_to_replace = $("#customer-projects");
+        on_customer_change($elem_to_replace, customer_id);
+    });
+
+    bind_project_selection();
+
+    const $task_type = $("#task_task_type_id");
+    $task_type.on("change", () => {
+        $(".task-task-type-dropdown__description").addClass("hidden");
+        $(`#task_task_type_dropdown_${$task_type.val()}`).removeClass("hidden");
+    });
+});
