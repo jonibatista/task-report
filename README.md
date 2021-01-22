@@ -10,8 +10,9 @@ Then, their manager begins the approval process. Finnaly, after has been approva
 // TODO
 
 ## What's next
-* Allow users to change their passwords
+* Hide projects with expiration date where task's date needs to be in between from..to) 
 * Adds comments to the review process
+* Allow users to change their passwords
 
 ## Contributing
 // TODO
