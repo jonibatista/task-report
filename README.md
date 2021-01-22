@@ -10,7 +10,7 @@ Then, their manager begins the approval process. Finnaly, after has been approva
 // TODO
 
 ## What's next
-* Hide projects with expiration date where task's date needs to be in between from..to) 
+* Hide projects with expiration date where task's date needs to be in between (from..to)
 * Adds comments to the review process
 * Allow users to change their passwords
 
