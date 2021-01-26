@@ -20,7 +20,8 @@ require("trix")
 require("@rails/actiontext")
 
 function on_customer_change($elem_to_replace, customer_id){
-    $.ajax(`../../customers/${customer_id}/projects`)
+    task_date = $("#task_task_date").val();
+    $.ajax(`../../customers/${customer_id}/projects/${task_date}`)
         .done( (dom) => {
             $elem_to_replace.html(dom);
             $elem_to_replace.trigger("change");
@@ -53,5 +54,10 @@ $(document).on('turbolinks:load', () => {
     $task_type.on("change", () => {
         $(".task-task-type-dropdown__description").addClass("hidden");
         $(`#task_task_type_dropdown_${$task_type.val()}`).removeClass("hidden");
+    });
+
+    const $task_date = $("#task_task_date");
+    $task_date.on("change", () => {
+        $task_customer.trigger("change");
     });
 });

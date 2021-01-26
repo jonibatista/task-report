@@ -18,7 +18,7 @@
 
   <div id="customer-projects" class="field">
     <%= form.label :project_id %>
-    <%= form.collection_select(:project_id, @task&.customer&.projects || [], :id, :name) %>
+    <%= form.collection_select(:project_id, @task&.customer&.projects.active_on(@task.task_date) || [], :id, :name) %>
     
     <ul class="task-project-dropdown">
       <% @task&.customer&.projects.each do |p| %>  

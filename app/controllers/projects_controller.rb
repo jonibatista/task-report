@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = policy_scope(Project)
+    @projects = policy_scope(Project).active_on
     authorize @projects
   end
 
@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = Project.new(active_from: Date.today)
     authorize @project
   end
 
@@ -62,6 +62,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def inactive
+    @projects = Project.inactive_on(Date.today)
+    authorize @projects
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -72,6 +77,6 @@ class ProjectsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def project_params
-    params.require(:project).permit(:code, :name, :description, :customer_id)
+    params.require(:project).permit(:code, :name, :description, :customer_id, :active_from, :active_until)
   end
 end

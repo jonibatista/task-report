@@ -63,7 +63,7 @@ class CustomersController < ApplicationController
   end
 
   def projects
-    @projects = @customer.projects
+    @projects = @customer.projects.active_on(params[:task_date])
     render 'projects', layout: false
   end
 

@@ -11,9 +11,12 @@ Rails.application.routes.draw do
   resources :tasks
 
   resources :task_types
-  resources :projects 
+
+  get 'projects/inactive',  to: 'projects#inactive', as: 'projects_inactive'
+  resources :projects
+
   resources :customers do
-    get 'projects' => 'customers#projects'
+    get 'projects/:task_date' => 'customers#projects'
   end
 
   get 'task_reports/approvals'

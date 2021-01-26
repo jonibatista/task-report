@@ -1,0 +1,25 @@
+<table class="projects__table">
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Code</th>
+      <th>Project</th>
+      <th class="col-actions"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% projects.each do |project| %>
+      <tr>
+        <td><%= project.customer.name %></td>
+        <td><%= project.code %></td>
+        <td><%= project.name %></td>
+        <td class="col-actions">
+          <%= link_to 'Show', project %>
+          <%= link_to 'Edit', edit_project_path(project) %>
+          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
