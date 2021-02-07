@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :task_date %>
+    <%= form.date_field :task_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, within: 1..24, class: 'tasks__duration-input' %>
+  </div>
+
+  <div class="field">
     <%= form.label :customer_id %>
     <%= form.collection_select(:customer_id, Customer.customers_with_projects, :id, :name, {selected: task.customer.id} ) %>
   </div>
@@ -36,16 +46,6 @@
         <li id="task_task_type_dropdown_<%= tt.id %>" class="task-task-type-dropdown__description hidden"><%= tt.description %></li>
       <% end %>
     </ul>
-  </div>
-
-  <div class="field">
-    <%= form.label :task_date %>
-    <%= form.date_field :task_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.number_field :duration, within: 1..24, class: 'tasks__duration-input' %>
   </div>
 
   <div class="field">

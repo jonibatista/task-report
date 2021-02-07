@@ -24,14 +24,14 @@ class Task < ApplicationRecord
   end
 
   def cannot_change_porvided_report
-    report =  user&.task_reports&.provided&.where('task_reports.from <= ? AND task_reports.to >= ?', task_date, task_date)&.first
+    report = user&.task_reports&.provided&.where('task_reports.from <= ? AND task_reports.to >= ?', task_date, task_date)&.first
     if report.present?
       errors.add :base, "The reprot #{report.title} doesn't accept changes since it's #{report.status}"
     end  
   end
 
   def project_cannot_be_inactive
-    return if project.nil? || task_date.nil? 
+    return if project.nil? || project.new_record? || task_date.nil? 
     if project.active_from > task_date || (project.active_until.present? && project.active_until < task_date)
       errors.add :project, "cannot be inactive for task date"
     end
