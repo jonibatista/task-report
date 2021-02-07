@@ -6,7 +6,6 @@ class Project < ApplicationRecord
   scope :inactive_on, -> (date = Date.today) { where.not('active_from <= ? AND (active_until IS NULL OR active_until >= ?)', date, date) }
   scope :to_deliver, -> { where(status: [:created, :rejected]) }
 
-  
   validates :name, presence: true
   validates :customer, presence: true
   validates :active_from, presence: true

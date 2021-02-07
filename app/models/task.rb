@@ -7,6 +7,8 @@ class Task < ApplicationRecord
 
   default_scope { order(:task_date) }
 
+  validates :project_id, presence: true
+  validates :task_type_id, presence: true
   validates :task_date, presence: true
   validates :duration, presence: true
   validates :description, presence: true
