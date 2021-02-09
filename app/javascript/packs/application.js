@@ -28,8 +28,9 @@ function on_customer_change(){
     const customer_id = $(dom_task_customer).val();
     const task_date = $(dom_task_date).val();
     const previous_selected_option = $(dom_task_project).val();
+    const task_project = $(dom_task_project).val();
 
-    $.ajax(`../../customers/${customer_id}/projects/${task_date}`)
+    $.ajax(`../../tasks/${customer_id}/${task_date}/${task_project}`)
         .done( (dom) => {
             $("#customer-projects").html(dom);
             if($(`${dom_task_project} option[value='${previous_selected_option}']`).length){
