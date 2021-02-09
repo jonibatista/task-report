@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   end
 
   get 'tasks/week/:year/:week',  to: 'tasks#index', as: 'tasks_by_week'
-  get 'tasks/:customer_id/:task_date', to: 'tasks#projects', as: 'task_projects'
-  get 'tasks/:customer_id/:task_date/:project_id', to: 'tasks#projects', as: 'task_projects_with_project'
+  get 'tasks/projects/:customer_id/on/:task_date', to: 'tasks#projects', as: 'task_projects'
   resources :tasks
 
   resources :task_types

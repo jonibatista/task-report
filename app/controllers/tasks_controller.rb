@@ -82,7 +82,6 @@ class TasksController < ApplicationController
     customer = policy_scope(Customer).find(params[:customer_id])
     @projects = customer&.projects&.active_on(Date.parse(params[:task_date])) || []
     authorize @projects
-    @project = @projects.find_by(id: params[:project_id])
     render partial: true, layout: false
   end
 

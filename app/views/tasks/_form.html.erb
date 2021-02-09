@@ -27,7 +27,7 @@
   </div>
 
   <% @projects = @task&.customer&.projects&.active_on(@task.task_date) || [] %>
-  <% @project = @task. project %>
+  <% @project = @task.project %>
   <div id="customer-projects" class="field">
     <%= render 'projects' %>
   </div>
