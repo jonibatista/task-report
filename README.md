@@ -10,11 +10,13 @@ Then, their manager begins the approval process. Finnaly, after has been approva
 // TODO
 
 ## What's next
+* Allow managers to export week reports
+* Adds some styles to mailers' views
 * Allow users to change their passwords
 * Adds comments to the review process
 
 ## Contributing
-// TODO
+I welcome contributions in the form of bug reports, pull requests, or thoughtful discussions in the GitHub issue tracker.
 
 ## License
 // TODO
