@@ -12,19 +12,24 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :task_date %>
+    <%= form.date_field :task_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, within: 1..24, class: 'tasks__duration-input' %>
+  </div>
+
+  <div class="field">
     <%= form.label :customer_id %>
     <%= form.collection_select(:customer_id, Customer.customers_with_projects, :id, :name, {selected: task.customer.id} ) %>
   </div>
 
+  <% @projects = @task&.customer&.projects&.active_on(@task.task_date) || [] %>
+  <% @project = @task.project %>
   <div id="customer-projects" class="field">
-    <%= form.label :project_id %>
-    <%= form.collection_select(:project_id, @task&.customer&.projects || [], :id, :name) %>
-    
-    <ul class="task-project-dropdown">
-      <% @task&.customer&.projects.each do |p| %>  
-        <li id="task_project_dropdown_<%= p.id %>" class="task-project-dropdown__description <%= @task.project == p ? '' : 'hidden' %>"><%= p.description %></li>
-      <% end %>
-    </ul>
+    <%= render 'projects' %>
   </div>
 
   <div class="field">
@@ -36,16 +41,6 @@
         <li id="task_task_type_dropdown_<%= tt.id %>" class="task-task-type-dropdown__description hidden"><%= tt.description %></li>
       <% end %>
     </ul>
-  </div>
-
-  <div class="field">
-    <%= form.label :task_date %>
-    <%= form.date_field :task_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :duration %>
-    <%= form.number_field :duration, within: 1..24, class: 'tasks__duration-input' %>
   </div>
 
   <div class="field">

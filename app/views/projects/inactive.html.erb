@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Projects</h1>
+<h1>Projects (inactive)</h1>
 
 <%= render 'projects', projects: @projects %>
 
 <div class="page-actions">
-  <%= link_to 'Show inactive projects', projects_inactive_path %> |
+  <%= link_to 'Show active projects', projects_path %> |
   <%= link_to 'New Project', new_project_path %>
 </div>

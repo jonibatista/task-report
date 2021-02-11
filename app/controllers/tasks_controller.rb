@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     customer = Customer.customers_with_projects&.first
-    @task = Task.new(user: @current_user, customer: customer, project: customer.projects.first, task_date: DateTime.now, duration: 1)
+    @task = Task.new(user: @current_user, customer: customer, task_date: DateTime.now, duration: 1)
     authorize @task
   end
 
@@ -78,6 +78,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def projects
+    customer = policy_scope(Customer).find(params[:customer_id])
+    @projects = customer&.projects&.active_on(Date.parse(params[:task_date])) || []
+    authorize @projects
+    render partial: true, layout: false
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -88,6 +95,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:project_id, :task_type_id, :task_date, :duration, :description)
+    params.require(:task).permit(:task_date, :duration, :description, :project_id, :task_type_id)
   end
 end

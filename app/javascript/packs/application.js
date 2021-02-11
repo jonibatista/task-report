@@ -19,39 +19,48 @@ require("jquery")
 require("trix")
 require("@rails/actiontext")
 
-function on_customer_change($elem_to_replace, customer_id){
-    $.ajax(`../../customers/${customer_id}/projects`)
-        .done( (dom) => {
-            $elem_to_replace.html(dom);
-            $elem_to_replace.trigger("change");
+const dom_task_date     = "#task_task_date";
+const dom_task_customer = "#task_customer_id";
+const dom_task_type     = "#task_task_type_id";
+const dom_task_project  = "#task_project_id";
 
+function on_customer_change(){
+    const customer_id = $(dom_task_customer).val();
+    const task_date = $(dom_task_date).val();
+    const previous_selected_option = $(dom_task_project).val();
+
+    $.ajax(`../../tasks/projects/${customer_id}/on/${task_date}`)
+        .done( (dom) => {
+            $("#customer-projects").html(dom);
             bind_project_selection();
+            if(previous_selected_option && $(`${dom_task_project} option[value='${previous_selected_option}']`).length){
+                $(dom_task_project).val(previous_selected_option);
+                $(dom_task_project).change();
+            }
         });
 }
 
 function bind_project_selection(){
-    const $task_project = $("#task_project_id");
-    $task_project.on("change", () => {
+    $(dom_task_project).on("change", () => {
         $(".task-project-dropdown__description").addClass("hidden");
-        $(`#task_project_dropdown_${$task_project.val()}`).removeClass("hidden");
-        const project_id = $task_project.val();
+        const task_project = $(dom_task_project).val()
+        $(`#task_project_dropdown_${task_project}`).removeClass("hidden");
     });
 }
 
 $(document).on('turbolinks:load', () => {
 
-    const $task_customer = $("#task_customer_id");
-    $task_customer.on("change", () => {
-        const customer_id = $task_customer.val();
-        const $elem_to_replace = $("#customer-projects");
-        on_customer_change($elem_to_replace, customer_id);
+    $(dom_task_customer).on("change", () => {
+        on_customer_change();
     });
 
     bind_project_selection();
 
-    const $task_type = $("#task_task_type_id");
-    $task_type.on("change", () => {
+    $(dom_task_type).on("change", () => {
         $(".task-task-type-dropdown__description").addClass("hidden");
-        $(`#task_task_type_dropdown_${$task_type.val()}`).removeClass("hidden");
+        const task_type = $(dom_task_type).val()
+        $(`#task_task_type_dropdown_${task_type}`).removeClass("hidden");
     });
+
+    $(dom_task_date).on("change", on_customer_change);
 });

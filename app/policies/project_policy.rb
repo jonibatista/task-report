@@ -1,5 +1,10 @@
 class ProjectPolicy < ApplicationPolicy
 
-  class Scope < Scope
+  def inactive?
+    true
+  end
+  
+  def projects?
+    true
   end
 end

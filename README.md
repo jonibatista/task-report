@@ -20,4 +20,3 @@ I welcome contributions in the form of bug reports, pull requests, or thoughtful
 
 ## License
 Created by [Jóni Batista](http://www.plagom.com/) and released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.html).
-.

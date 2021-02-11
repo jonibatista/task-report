@@ -8,13 +8,15 @@ Rails.application.routes.draw do
   end
 
   get 'tasks/week/:year/:week',  to: 'tasks#index', as: 'tasks_by_week'
+  get 'tasks/projects/:customer_id/on/:task_date', to: 'tasks#projects', as: 'task_projects'
   resources :tasks
 
   resources :task_types
-  resources :projects 
-  resources :customers do
-    get 'projects' => 'customers#projects'
-  end
+
+  get 'projects/inactive',  to: 'projects#inactive', as: 'projects_inactive'
+  resources :projects
+
+  resources :customers 
 
   get 'task_reports/approvals'
   get 'task_reports/new/:date',  to: 'task_reports#new', as: 'new_task_reports_by_week'

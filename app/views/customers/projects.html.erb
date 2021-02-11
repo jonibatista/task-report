@@ -1,8 +1,0 @@
-<%= label_tag :project_id %>
-<%= collection_select(:task, :project_id, @projects, :id, :name) %>
-
-<ul class="task-project-dropdown">
-    <% @projects.each do |p| %>  
-    <li id="task_project_dropdown_<%= p.id %>" class="task-project-dropdown__description  <%= @projects&.first == p ? '' : 'hidden' %>"><%= p.description %></li>
-    <% end %>
-</ul>

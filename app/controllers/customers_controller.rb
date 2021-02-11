@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[show edit update destroy projects]
+  before_action :set_customer, only: %i[show edit update destroy]
 
   # GET /customers
   # GET /customers.json
@@ -60,11 +60,6 @@ class CustomersController < ApplicationController
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def projects
-    @projects = @customer.projects
-    render 'projects', layout: false
   end
 
   private
