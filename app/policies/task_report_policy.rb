@@ -9,7 +9,7 @@ class TaskReportPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.user.task_reports.exists?(from: record.from) ? false : true
   end
 
   def update?
