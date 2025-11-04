@@ -1,4 +1,6 @@
-require "logger"
+# Added to fix ActiveSupport::LoggerThreadSafeLevel::Logger
+require 'logger'   # TODO: Remove once logger is autoloaded by Rails 
+
 require_relative 'boot'
 
 require 'rails/all'

@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# Added to fix ActiveSupport::LoggerThreadSafeLevel::Logger
+require 'logger'   # TODO: Remove once logger is autoloaded by Rails 
+
 ENV["RAILS_ENV"] ||= ENV["RACK_ENV"] || "development"
 ENV["NODE_ENV"]  ||= "development"
 
